@@ -1,30 +1,83 @@
-import java.util.Stack;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Scanner;
-public class balanceParenthesis {
+
+public class Balanced_Brackets {
 
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		String str = input.nextLine();
-		Stack<Character> stack = new Stack<Character>();
-		
-		int i;
-		for(i=0; i<str.length(); i++) {
-			if(str.charAt(i)== '(' || str.charAt(i)== '{' || str.charAt(i)== '[') {
-				stack.push(str.charAt(i));
-			}
-			else if (!stack.empty() && ((str.charAt(i)==']' && stack.peek()== '[' ) ||
-					(str.charAt(i)=='}' && stack.peek()== '{' ) ||
-					(str.charAt(i)==')' && stack.peek()== '('))) {
-				stack.pop();
-			}
-			else
-				stack.push(str.charAt(i));
-					
+		Scanner sc = new Scanner(System.in);
+		String input_brackets = sc.next();
+		if(brackets(input_brackets)==false)
+		{
+			System.out.println(add_brackets(input_brackets));
+		}
+		else 
+		{
+			System.out.println(input_brackets);
+		}
 	}
-		if(stack.empty())
-			System.out.println("balanced");
-		else
-			System.out.println("unbalanced");
-			
+	public static boolean brackets(String input_brackets) {
+		Deque<Character> deque = new LinkedList<>();
+		char[] character_array =input_brackets.toCharArray();
+		for (int i = 0; i < character_array.length; i++) 
+		{
+			if(character_array[i]=='{' || character_array[i]=='[' || character_array[i]=='(')
+			{
+				deque.addFirst(character_array[i]);
+			}
+			else 
+			{
+				if(!deque.isEmpty())
+				{
+					if( ((deque.peekFirst()=='{' && character_array[i]=='}') || (deque.peekFirst()=='[' && character_array[i]==']') || (deque.peekFirst()=='(' && character_array[i]==')'))) 
+					{
+						deque.removeFirst();
+					}
+					else 
+					{
+						return false;
+					}
+				}
+				else {
+					return false;
+				}
+			}
+		}
+		if(!deque.isEmpty())
+		{
+			return false;
+		}
+		return true;
+	}
+	public static StringBuilder add_brackets(String input_brackets)
+	{
+		char[] character_array =input_brackets.toCharArray();
+		String output_bracket="";
+		StringBuilder string_builder = new StringBuilder();
+		for (int i = 0; i < character_array.length; i++) 
+		{
+			if(character_array[i]=='{' || character_array[i]=='[' || character_array[i]=='(')
+			{
+				output_bracket=output_bracket+character_array[i];
+			}
+		}
+		string_builder.append(output_bracket);
+		char[] output_character_array =output_bracket.toCharArray();
+		for(int i=output_bracket.length()-1;i>=0;i--)
+		{
+			if(output_character_array[i]=='(')
+			{
+				string_builder.append(")");
+			}
+			if(output_character_array[i]=='{') 
+			{
+				string_builder.append("}");
+			}
+			if(output_character_array[i]=='[')
+			{
+				string_builder.append("]");
+			}
+		}
+		return(string_builder);
 	}
 }
