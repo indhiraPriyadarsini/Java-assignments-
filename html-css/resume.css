@@ -1,0 +1,49 @@
+body{
+    background-color: rgb(234, 230, 230);
+}
+img{
+    padding-left: 100px;
+}
+#background {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 40%;
+    height: 100%;
+    background-color: rgb(223, 206, 206);
+   
+}
+
+#content {
+    position: relative;
+    padding:10px;
+    font-family:Georgia
+}
+
+#b {
+    position: absolute;
+    right: 0;
+    width: 50%; 
+  } 
+#leftStyle
+{   
+    color: white;
+    width:33%;
+    padding:8px;
+    background: rgb(103, 99, 99);
+    background-size: 20px;
+    font-family: "exo";
+    float:left
+}
+
+#rightStyle
+{   
+    color: white;
+    width: 735px;
+    padding:8px;
+    background: rgb(103, 99, 99);
+    background-size: 20px;
+    font-family: "exo";
+    float:right
+}
+   
